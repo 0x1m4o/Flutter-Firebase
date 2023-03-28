@@ -29,10 +29,10 @@ class _SignInStateState extends State<SignInState> {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text('Data Tidak Ada')));
                 } else {
-                  print(result);
+                  print(result.uid);
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Data berhasil dikirim')));
-                }
+                }  
               },
               child: Text('Sign In Anonymously'),
               style: ButtonStyle(
