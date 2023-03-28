@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/services/auth.dart';
 
-class SignInState extends StatefulWidget {
+class RegisterState extends StatefulWidget {
   @override
-  State<SignInState> createState() => _SignInStateState();
+  State<RegisterState> createState() => _RegisterStateState();
 }
 
-class _SignInStateState extends State<SignInState> {
+class _RegisterStateState extends State<RegisterState> {
   final AuthService _auth = AuthService();
-
-  String email = '';
-  String password = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
-        title: Text('Sign In to Chanddut Coffee'),
+        title: Text('Register to Chanddut Coffee'),
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
       ),
@@ -48,11 +45,7 @@ class _SignInStateState extends State<SignInState> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           floatingLabelStyle: TextStyle(color: Colors.brown)),
-                      onChanged: (value) {
-                        setState(() {
-                          email = value;
-                        });
-                      },
+                      onChanged: (value) {},
                     ),
                     SizedBox(
                       height: 15,
@@ -72,11 +65,7 @@ class _SignInStateState extends State<SignInState> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           floatingLabelStyle: TextStyle(color: Colors.brown)),
-                      onChanged: (value) {
-                        setState(() {
-                          password = value;
-                        });
-                      },
+                      onChanged: (value) {},
                     ),
                     SizedBox(
                       height: 25,
@@ -86,12 +75,9 @@ class _SignInStateState extends State<SignInState> {
                       child: Container(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () async {
-                            print(email);
-                            print(password);
-                          },
+                          onPressed: () async {},
                           child: Text(
-                            'Sign In',
+                            'Register',
                             style: TextStyle(fontSize: 15),
                           ),
                           style: ButtonStyle(
@@ -110,31 +96,6 @@ class _SignInStateState extends State<SignInState> {
                     SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        onPressed: () async {
-                          dynamic result = await _auth.anonymousSignIn();
-                          if (result == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Data Tidak Ada')));
-                          } else {
-                            print(result.uid);
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text('Data berhasil dikirim')));
-                          }
-                        },
-                        style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                width: 1,
-                                color: Colors.black38,
-                                style: BorderStyle.solid)),
-                        child: Text(
-                          'Sign In as Guest',
-                          style: TextStyle(color: Colors.grey, fontSize: 12),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               )),
