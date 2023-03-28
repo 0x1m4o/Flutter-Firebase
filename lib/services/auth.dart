@@ -13,6 +13,7 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
+  /// Sign in Anonymous
   Future anonymousSignIn() async {
     try {
       // AuthResult => UserCredential
@@ -20,6 +21,16 @@ class AuthService {
       // FirebaseUser => User
       User? user = result.user;
       return _userFromFirebaseUser(user!);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  /// Sign Out
+  Future userSignOut() async {
+    try {
+      return await _auth.signOut();
     } catch (e) {
       print(e.toString());
       return null;
