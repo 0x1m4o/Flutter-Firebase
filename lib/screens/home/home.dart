@@ -3,8 +3,10 @@ import 'package:flutter_firebase/services/auth.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       backgroundColor: Colors.brown[300],
       appBar: AppBar(
@@ -20,6 +22,7 @@ class Home extends StatelessWidget {
           )
         ],
       ),
+      body: Text('${args}'),
     );
   }
 }
