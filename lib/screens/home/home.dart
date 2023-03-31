@@ -6,7 +6,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       backgroundColor: Colors.brown[300],
       appBar: AppBar(
@@ -22,7 +21,6 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: Text('${args}'),
     );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_firebase/services/database.dart';
 import '../models/user.dart';
 
 class AuthService {
@@ -43,7 +45,11 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      return _userFromFirebaseUser(user!);
+      if (user != null) {
+        await DatabaseService(uid: user.uid)
+            .updateData('0', 'New Crew Member', 100);
+      }
+      return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
       return null;
@@ -56,7 +62,8 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      return _userFromFirebaseUser(user!);
+
+      return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
       return null;
