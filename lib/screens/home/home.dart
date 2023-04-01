@@ -14,21 +14,25 @@ class Home extends StatelessWidget {
     void _showSettingsPanel() {
       showDialog(
           context: context,
-          builder: (context) => new AlertDialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                content: Builder(
-                  builder: (context) {
-                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                    var height = MediaQuery.of(context).size.height;
-                    var width = MediaQuery.of(context).size.width;
+          builder: (context) => Center(
+                child: SingleChildScrollView(
+                  child: new AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    content: Builder(
+                      builder: (context) {
+                        // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                        var height = MediaQuery.of(context).size.height;
+                        var width = MediaQuery.of(context).size.width;
 
-                    return Container(
-                      height: height - 400,
-                      width: width,
-                      child: DialogContent(),
-                    );
-                  },
+                        return Container(
+                          height: height - 450,
+                          width: width,
+                          child: DialogContent(),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ));
     }

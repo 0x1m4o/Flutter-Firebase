@@ -74,6 +74,20 @@ class _DialogContentState extends State<DialogContent> {
             SizedBox(
               height: 20,
             ),
+            Slider(
+              value: (_currentStrength ?? 100).toDouble(),
+              onChanged: (value) => setState(() {
+                _currentStrength = value.round();
+              }),
+              min: 100,
+              max: 900,
+              divisions: 8,
+              activeColor: Colors.brown[_currentStrength ?? 100],
+              inactiveColor: Colors.brown[_currentStrength ?? 100 ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
