@@ -19,12 +19,12 @@ class DatabaseService {
   }
 
   /// Membuat Stream untuk snapshot userdata
-  Stream<List<DataModel>> get userData {
+  Stream<List<DataModel>?> get userData {
     return dataCollection.snapshots().map(_brewListSnapshot);
   }
 
   /// Membuat sebuah list dari hasil snapshot tersebut
-  List<DataModel> _brewListSnapshot(QuerySnapshot snapshot) {
+  List<DataModel>? _brewListSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((documents) {
       return DataModel(
         name: documents['name'] ?? '',

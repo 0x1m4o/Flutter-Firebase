@@ -10,6 +10,18 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showSettingsPanel() {
+      showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+            child: Text('Bottom Sheets'),
+          );
+        },
+      );
+    }
+
     return StreamProvider<List<DataModel>?>.value(
       initialData: null,
       value: DatabaseService(uid: '').userData,
@@ -19,14 +31,31 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.brown[400],
           title: Text('Home Page'),
           actions: [
-            IconButton(
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                iconColor: Colors.white,
+              ),
               onPressed: () async {
                 await _auth.userSignOut();
               },
               icon: Icon(Icons.exit_to_app_rounded),
-              tooltip: 'Logout',
+              label: Text(
+                'Logout',
+                style: TextStyle(color: Colors.white, fontSize: 13),
+              ),
             )
           ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => _showSettingsPanel(),
+          backgroundColor: Colors.brown,
+          label: Row(children: [
+            Icon(Icons.person),
+            SizedBox(
+              width: 10,
+            ),
+            Text('Profile')
+          ]),
         ),
         body: ListUser(),
       ),
