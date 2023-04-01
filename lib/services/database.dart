@@ -16,4 +16,8 @@ class DatabaseService {
     };
     return await dataCollection.doc(uid).set(data);
   }
+
+  Stream<QuerySnapshot> get userData {
+    return dataCollection.snapshots();
+  }
 }
