@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import '../../models/data_model.dart';
 
 class ListUser extends StatefulWidget {
   const ListUser({super.key});
@@ -12,10 +12,13 @@ class ListUser extends StatefulWidget {
 class _ListUserState extends State<ListUser> {
   @override
   Widget build(BuildContext context) {
-    final userDocs = Provider.of<QuerySnapshot>(context);
-    for (var doc in userDocs.docs) {
-      print(doc.data());
-    }
+    final userDocs = Provider.of<List<DataModel>>(context);
+
+    userDocs.forEach((user) {
+      print(user.name);
+      print(user.sugars);
+      print(user.strength);
+    });
     return Container();
   }
 }
