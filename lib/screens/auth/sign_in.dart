@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/services/auth.dart';
+import 'package:flutter_firebase/shared/text_fields_constant.dart';
 import '../../shared/emailValidator.dart';
 import '../../shared/loading.dart';
 
@@ -26,8 +27,9 @@ class _SignInStateState extends State<SignInState> {
         : Scaffold(
             backgroundColor: Colors.brown[100],
             appBar: AppBar(
+              
               title: Text(
-                'Sign In to Chanddut Coffee',
+                'Sign In',
                 style: TextStyle(fontSize: 15),
               ),
               backgroundColor: Colors.brown[400],
@@ -70,20 +72,10 @@ class _SignInStateState extends State<SignInState> {
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 validator: validateEmail,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    hintText: 'person@example.com',
-                                    labelText: 'Email',
-                                    focusColor: Colors.white,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.brown, width: 1.0),
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    floatingLabelStyle:
-                                        TextStyle(color: Colors.brown)),
+                                decoration: textInputDecoration.copyWith(
+                                  hintText: 'person@example.com',
+                                  labelText: 'Email',
+                                ),
                                 onChanged: (value) {
                                   setState(() {
                                     email = value;
@@ -95,20 +87,10 @@ class _SignInStateState extends State<SignInState> {
                               ),
                               TextFormField(
                                 obscureText: true,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    hintText: 'Enter your Password',
-                                    labelText: 'Password',
-                                    focusColor: Colors.white,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.brown, width: 1.0),
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    floatingLabelStyle:
-                                        TextStyle(color: Colors.brown)),
+                                decoration: textInputDecoration.copyWith(
+                                  hintText: 'Enter your Password',
+                                  labelText: 'Password',
+                                ),
                                 onChanged: (value) {
                                   setState(() {
                                     password = value;

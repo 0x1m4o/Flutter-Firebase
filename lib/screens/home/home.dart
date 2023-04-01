@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/models/data_model.dart';
+import 'package:flutter_firebase/screens/home/settings_form.dart';
 import 'package:flutter_firebase/screens/home/user_list.dart';
 import 'package:flutter_firebase/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -11,15 +12,25 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _showSettingsPanel() {
-      showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-            child: Text('Bottom Sheets'),
-          );
-        },
-      );
+      showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                content: Builder(
+                  builder: (context) {
+                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                    var height = MediaQuery.of(context).size.height;
+                    var width = MediaQuery.of(context).size.width;
+
+                    return Container(
+                      height: height - 400,
+                      width: width,
+                      child: DialogContent(),
+                    );
+                  },
+                ),
+              ));
     }
 
     return StreamProvider<List<DataModel>?>.value(
@@ -46,6 +57,8 @@ class Home extends StatelessWidget {
             )
           ],
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => _showSettingsPanel(),
           backgroundColor: Colors.brown,
